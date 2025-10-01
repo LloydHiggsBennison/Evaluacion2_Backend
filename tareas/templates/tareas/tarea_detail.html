@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descripcion de tarea</title>
+    <style>
+        a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ tarea.titulo }}</h1>
+    <p>{{ tarea.descripcion }}</p>
+    <p>Prioridad: {{ tarea.prioridad }}</p>
+    <p>Vigente: {{ tarea.vigente }}</p>
+    <p>Creada: {{ tarea.fecha_creacion }}</p>
+    <p>Fecha Limite: {{ tarea.fecha_limite }}</p>
+    <a href="{% url 'tareas:lista' %}">Volver a la lista</a>
+    <a href="{% url 'tareas:editar' tarea.pk %}">Editar Tarea</a>
+    <a href="{% url 'tareas:eliminar' tarea.pk %}">Eliminar Tarea</a>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        a.button {
+            display: inline-block;
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <a href="{% url 'tareas:crear' %}" class="button">Nueva Tarea</a>
+    <table>
+        <tr>
+            <th>Titulo</th>
+            <th>Vigente</th>
+            <th>Fecha de Creacion</th>
+            <th>Fecha Limite</th>
+            <th>Acciones</th>
+        </tr>
+        {% for t in tareas %}
+        <tr>
+            <td><a href="{% url 'tareas:detalle' t.id %}">{{ t.titulo }}</a></td>
+            <td>{{ t.vigente }}</td>
+            <td>{{ t.fecha_creacion }}</td>
+            <td>{{ t.fecha_limite }}</td>
+            <td>
+                <a href="{% url 'tareas:editar' t.id %}">Editar</a> |
+                <a href="{% url 'tareas:eliminar' t.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="7">No hay tareas registradas</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
